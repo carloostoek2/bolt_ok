@@ -69,10 +69,12 @@ class EnhancedDianaMenuSystem:
                            "Susurra mi nombre, querido... ¿Qué secretos deseas explorar conmigo hoy?\n\n"
                            "✨ Cada elección te acerca más a los misterios que guardo...",
                     "buttons": [
-                        [{"text": "📖 Narrativa Misteriosa", "callback_data": "diana_narrative"}],
-                        [{"text": "🎮 Juegos de Seducción", "callback_data": "diana_games"}],
-                        [{"text": "👤 Mi Perfil Secreto", "callback_data": "diana_profile"}],
-                        [{"text": "👑 Descubrir VIP...", "callback_data": "diana_vip_preview"}],
+                        [{"text": "💋 Continuar Historia", "callback_data": "diana_narrative"}],
+                        [{"text": "🌟 Mis Besitos", "callback_data": "diana_besitos"}],
+                        [{"text": "🎯 Misiones", "callback_data": "diana_missions"}],
+                        [{"text": "🏆 Logros", "callback_data": "diana_achievements"}],
+                        [{"text": "💎 VIP", "callback_data": "diana_vip_preview"}],
+                        [{"text": "⚙️ Configuración", "callback_data": "diana_settings"}],
                         [{"text": "🌙 Cerrar", "callback_data": "diana_close"}]
                     ]
                 },
@@ -81,11 +83,12 @@ class EnhancedDianaMenuSystem:
                            f"Ah, mi querido elegido... Bienvenido a donde solo los especiales pueden llegar.\n\n"
                            "💎 Los secretos más profundos te pertenecen ahora...",
                     "buttons": [
-                        [{"text": "📖 Narrativas Exclusivas", "callback_data": "diana_vip_narrative"}],
-                        [{"text": "🎮 Juegos Premium", "callback_data": "diana_vip_games"}],
-                        [{"text": "💰 Mis Puntos & Logros", "callback_data": "diana_gamification"}],
+                        [{"text": "💋 Continuar Historia", "callback_data": "diana_vip_narrative"}],
+                        [{"text": "🌟 Mis Besitos", "callback_data": "diana_besitos"}],
+                        [{"text": "🎯 Misiones", "callback_data": "diana_missions"}],
+                        [{"text": "🏆 Logros", "callback_data": "diana_achievements"}],
                         [{"text": "👑 Estado VIP", "callback_data": "diana_vip_status"}],
-                        [{"text": "👤 Perfil Íntimo", "callback_data": "diana_profile"}],
+                        [{"text": "⚙️ Configuración", "callback_data": "diana_settings"}],
                         [{"text": "🌙 Cerrar", "callback_data": "diana_close"}]
                     ]
                 },
