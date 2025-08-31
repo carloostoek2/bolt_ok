@@ -12,8 +12,7 @@ from sqlalchemy.pool import StaticPool
 
 from database.base import Base
 from database.models import User, Channel, UserStats, Badge, UserBadge, NarrativeReward, UserRewardHistory
-from database.narrative_models import UserNarrativeState, StoryFragment, NarrativeFragment, NarrativeDecision, UserDecisionLog
-from database.narrative_unified import NarrativeFragment as UnifiedNarrativeFragment
+from database.narrative_unified import NarrativeFragment, UserNarrativeState, UserDecisionLog
 from services.coordinador_central import CoordinadorCentral
 from services.point_service import PointService
 from services.user_service import UserService
