@@ -11,7 +11,7 @@ from sqlalchemy.future import select
 from sqlalchemy import func, and_, or_
 
 from database.models import User, Badge, UserBadge
-from database.narrative_models import UserNarrativeState
+from database.narrative_unified import UserNarrativeState
 from services.point_service import PointService
 from services.user_service import UserService
 from services.narrative_service import NarrativeService

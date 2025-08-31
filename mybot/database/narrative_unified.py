@@ -86,7 +86,7 @@ class UserNarrativeState(Base):
     
     # Relaciones
     user = relationship("User", backref="narrative_state_unified", uselist=False)
-    current_fragment = relationship("database.narrative_unified.NarrativeFragment", foreign_keys=[current_fragment_id])
+    current_fragment = relationship("NarrativeFragment", foreign_keys=[current_fragment_id])
     
     async def get_progress_percentage(self, session):
         """Calcula el porcentaje de progreso del usuario.
@@ -120,3 +120,55 @@ class UserNarrativeState(Base):
             bool: True si la pista está desbloqueada, False en caso contrario
         """
         return clue_code in self.unlocked_clues
+
+    def has_visited_fragment(self, fragment_id):
+        """Verifica si el usuario ha visitado un fragmento específico.
+        
+        Args:
+            fragment_id (str): ID del fragmento a verificar
+            
+        Returns:
+            bool: True si el fragmento ha sido visitado, False en caso contrario
+        """
+        return fragment_id in self.visited_fragments
+
+    def has_completed_fragment(self, fragment_id):
+        """Verifica si el usuario ha completado un fragmento específico.
+        
+        Args:
+            fragment_id (str): ID del fragmento a verificar
+            
+        Returns:
+            bool: True si el fragmento ha sido completado, False en caso contrario
+        """
+        return fragment_id in self.completed_fragments
+
+
+class UserDecisionLog(Base):
+    """Log de decisiones del usuario en el sistema narrativo unificado.
+    
+    Este modelo registra todas las decisiones tomadas por los usuarios para
+    análisis, seguimiento de progreso y prevención de recompensas duplicadas.
+    """
+    
+    __tablename__ = 'user_decision_log_unified'
+    __table_args__ = (
+        Index('ix_user_decision_log_unified_user', 'user_id'),
+        Index('ix_user_decision_log_unified_time', 'made_at'),
+        Index('ix_user_decision_log_unified_fragment', 'fragment_id'),
+    )
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(BigInteger, ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+    fragment_id = Column(String, ForeignKey('narrative_fragments_unified.id', ondelete='CASCADE'), nullable=False)
+    decision_choice = Column(String(100), nullable=False)  # Texto de la opción elegida
+    points_awarded = Column(Integer, default=0, nullable=False)
+    clues_unlocked = Column(JSON, default=list, nullable=False)  # Lista de códigos de pistas desbloqueadas
+    made_at = Column(DateTime, default=func.now(), nullable=False)
+    
+    # Relaciones
+    user = relationship("User", lazy="selectin")
+    fragment = relationship("NarrativeFragment", lazy="selectin")
+
+    def __repr__(self):
+        return f"<UserDecisionLog(id={self.id}, user_id={self.user_id}, fragment_id='{self.fragment_id}', choice='{self.decision_choice}')>"

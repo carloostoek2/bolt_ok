@@ -21,7 +21,7 @@ from ..integration.channel_engagement_service import ChannelEngagementService
 from ..event_bus import get_event_bus, EventType
 from ..diana_menu_system import get_diana_menu_system
 from database.models import User
-from database.narrative_models import UserNarrativeState
+from database.narrative_unified import UserNarrativeState
 from utils.handler_decorators import safe_handler
 from utils.message_safety import safe_send_message
 
