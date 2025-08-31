@@ -583,7 +583,7 @@ class RoleTransition(Base):
     new_role = Column(String, nullable=False)
     transition_reason = Column(String, nullable=True)
     transition_type = Column(String, default="automatic")  # automatic, manual, system
-    performed_by = Column(BigInteger, nullable=True)  # Admin user ID if manual
+    performed_by = Column(BigInteger, ForeignKey("users.id"), nullable=True)  # Admin user ID if manual
     transition_metadata = Column(JSON, default={})  # Renamed to avoid SQLAlchemy conflict
     created_at = Column(DateTime, default=func.now())
     
